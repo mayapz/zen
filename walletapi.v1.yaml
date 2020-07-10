@@ -3,9 +3,9 @@ info:
   title: walletapi
   version: '1.0'
   x-logo:
-    url: 'https://redocly.github.io/redoc/petstore-logo.png'
+    url: 'https://raw.githubusercontent.com/mayapz/zen/master/ZendMoney.png'
     backgroundColor: '#FFFFFF'
-    altText: 'Petstore logo'
+    altText: 'Zendmoney logo'
   description: ''
 servers:
   - url: 'http://zendmoney.com'
