@@ -1,11 +1,11 @@
 openapi: 3.0.0
 info:
-  title: walletapi
+  title: Partner API
   version: '1.0'
   x-logo:
     url: 'https://raw.githubusercontent.com/mayapz/zen/master/ZendMoney.png'
     backgroundColor: '#FFFFFF'
-    altText: 'Zendmoney logo'
+    altText: Zendmoney logo
   description: ''
 servers:
   - url: 'http://zendmoney.com'
