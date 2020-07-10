@@ -4,7 +4,7 @@ info:
   version: '1.0'
   x-logo:
     url: 'https://raw.githubusercontent.com/mayapz/zen/master/ZendMoney.png'
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#f6b01a '
     altText: Zendmoney logo
   description: ''
 servers:
