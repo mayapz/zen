@@ -1,0 +1,1164 @@
+openapi: 3.0.0
+info:
+  title: walletapi
+  version: '1.0'
+   "title": "Swagger Petstore",
+    "x-logo": {
+      "url": "https://redocly.github.io/redoc/petstore-logo.png",
+      "backgroundColor": "#FFFFFF",
+      "altText": "Petstore logo"
+    }
+  description: ''
+servers:
+  - url: 'http://zendmoney.com'
+paths:
+  /ZendPartnerAPIDev/api/ZmartToken:
+    get:
+      summary: Authorization
+      tags: []
+      responses:
+        '200':
+          description: "\n    {\n      \"code\":\"200\",\n      \"token\":\"nltdC9OLjiOsFHUqwkqgxKQLrH8zkyEnX_cIDT6nNZPmyow6co5HkFjSY0OnQrlCkK8QBYv9Sz8cJtFHx44KhtS47ReKT-      YgNg4qojQFnDxtrr0qHS3euasVLhhv-Wh6f8oKa99-yENN9ry-Bhpi-gJ46gBbDmSzfykW_2yPEzZCoWzQ_EtKYu4ImTv2prPbFHywnfmZCjC1aaa-nSBfqjnbBmNE35Vw8mT5cpHwgnDy0JIYIGCHupyiPvbhm4aHUBPVMohVYalfMUKy71JFFkXtSmURX19bGKFd14tb2lK4qVwPJY1ca42N8_oiLeDYR0KAlil2JAKXypAAydJaP-paivOd_OnUxM8BotqGqeeIhWnfu1Y4nCO2BKZrwhyXZD9ZLqygizgrRJHfXcugU7NwxtaiIlYFjXS6Kl9ggWzyfqyFDARTmp33tSl8EjY1\",\n      \n    \"refresh_token\": \"c62b20fe6d0d4f91beac2e2bcf4bf37d\",\n    \"message\":\"Token type : bearer\",\n    \"expired\":\"7199\"\n  }\n    "
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  token:
+                    type: string
+                    description: Token use for Oauth Authorization
+                  refresh_token:
+                    type: string
+                    description: Refresh token (currently useless until next update)
+                  message:
+                    type: string
+                    description: Response message from server
+                  expired:
+                    type: string
+                    description: Response message from server
+      operationId: get-ZendPartnerapidev-api-ZmartToken
+      description: To obtain Authorization for accessing all available API Endpoint.
+      parameters:
+        - schema:
+            type: string
+            example: '001'
+          in: header
+          name: PartnerID
+          description: PartnerID given by ZENDMONEY.
+          required: true
+        - schema:
+            type: string
+            example: A+TSZe4OE6VAFz0V53IjXzPD5kz/Evv2NcJu+Gd/XcU=
+          in: header
+          description: Password that create from HMAC256(PartnerID + Secret Word + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+          name: PartnerKey
+          required: true
+        - schema:
+            type: string
+            example: '2019-03-11T05:50:00Z'
+          in: header
+          description: Time of request with format iso-8601.
+          required: true
+          name: TimeStamp
+        - schema:
+            type: string
+            example: '000020'
+          in: header
+          name: SequenceNumber
+          required: true
+          description: 'A unique 6 length number for each request. '
+    parameters: []
+  /ZendPartnerAPIDev/api/KYC:
+    parameters: []
+    post:
+      summary: KYC
+      operationId: post-ZendPartnerapidev-api-KYC
+      responses:
+        '200':
+          description: "    \n    {\n    \"message\": \"Berhasil menyimpan data\"\n    \"code\"  : \"200\"\n    }"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Response message from server
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+      description: |+
+        To insert detailed profile of user. There are two types of user:
+        a. Regular User: User that has IDR 2 million balance limit.
+        Mandatory field: firstName, lastName, email, and phoneNumber.
+        b. Premium User: User that has IDR 10 million balance limit and premium service such as bank transfer.
+        Mandatory field: as described below. Must be followed by Upload endpoint for verification purpose.
+
+
+
+      parameters:
+        - schema:
+            type: string
+            example: '000005'
+          in: header
+          name: PartnerID
+          description: PartnerID given by zend.
+          required: true
+        - schema:
+            type: string
+            example: kCOrgeUdhr6iMYbhqusZbPtolx3m8zF1hVRtAwotVYY=
+          in: header
+          name: PartnerKey
+          required: true
+        - schema:
+            type: string
+            example: '2020-01-16T16:27:00Z'
+          in: header
+          name: TimeStamp
+          required: true
+        - schema:
+            type: string
+            example: '000012'
+          in: header
+          name: sequenceNumber
+          required: true
+        - schema:
+            type: string
+            example: Application/json
+          in: header
+          name: Content-Type
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                  example: Test 1
+                lastName:
+                  type: string
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                  example: Test 2
+                idType:
+                  type: string
+                  description: Mandatory with 50 character max
+                  example: KTP
+                  maxLength: 50
+                idNumber:
+                  type: string
+                  description: Mandatory with 50 character max
+                  example: '3173041234567890'
+                  maxLength: 50
+                idIssuePlace:
+                  type: string
+                  example: Jakarta
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                idIssueDate:
+                  type: string
+                  description: Mandatory with yyyy-MM-dd format
+                  format: date
+                  example: '1989-10-21'
+                idExpiryDate:
+                  type: string
+                  description: Mandatory with yyyy-MM-dd format
+                  format: date
+                  example: '2099-10-21'
+                birthDate:
+                  type: string
+                  description: Mandatory with yyyy-MM-dd format
+                  format: date
+                  example: '1989-10-21'
+                email:
+                  type: string
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                  format: email
+                  example: test@mail.com
+                gender:
+                  type: string
+                  example: male
+                  description: Mandatory with Male or Female selection
+                phoneNumber:
+                  type: string
+                  example: '628123456789'
+                  description: Mandatory with 50 character max
+                  maxLength: 50
+                address1:
+                  type: string
+                  example: jalan kembang bunga 2
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                address2:
+                  type: string
+                  example: no 66 rt 13 rw 3
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                city:
+                  type: string
+                  example: Jakarta
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                postCode:
+                  type: string
+                  example: '11140'
+                  description: Mandatory with 10 character max
+                  maxLength: 10
+                state:
+                  type: string
+                  example: DKI Jakarta
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                country:
+                  type: string
+                  example: Indonesia
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                nationality:
+                  type: string
+                  example: Indonesia
+                  description: Mandatory with 250 character max
+                  maxLength: 250
+                answer1:
+                  type: string
+                  example: haha
+                  description: Optional with 250 character max
+                  maxLength: 250
+                answer2:
+                  type: string
+                  example: hihi
+                  description: Optional with 250 character max
+                  maxLength: 250
+          form:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+  /ZendPartnerAPIDev/api/ZmartService:
+    get:
+      summary: Zmart Service
+      tags: []
+      responses:
+        '200':
+          description: "\n    {  \n    \"code\":\"200\",\n    \"message\":\"Success\",\n    \"serviceList\":[{\"ServiceCode\":3,\n                    \"ServiceName\":\"Paket Internet\"},\n                  \n                 {\"ServiceCode\":8,\n                  \"ServiceName\":\"Remittance\"},\n                  \n                  {\"ServiceCode\":5,\n                  \"ServiceName\":\"Tagihan Listrik\"},\n\n                  {\"ServiceCode\":4,\n                  \"ServiceName\":\"Token Listrik\"},\n                  \n                  {\"ServiceCode\":2,\n                  \"ServiceName\":\"Topup Pulsa\"}],\n                  \n    \"providerList\":[\n\n                  {\"ProviderCode\":2,\n                  \"ServiceCode\":2,\n                  \"ProviderName\":\"Indosat\"},\n\n                  \"ServiceCode\":2,\n                  \"ProviderName\":\"Telkomsel\"},\n\n                  {\"ProviderCode\":4,\n                  \"ServiceCode\":3,\n                  \"ProviderName\":\"Indosat\"},\n  \n                  {\"ProviderCode\":3,\n                \"ServiceCode\":3,\n                \"ProviderName\":\"Telkomsel\"}]}\n"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  serviceList:
+                    description: Contains list of services
+                    allOf:
+                      - items:
+                          type: object
+                          properties:
+                            ServiceCode:
+                              type: string
+                              description: Code of the service
+                            ServiceName:
+                              type: string
+                              description: Name of the service
+                    type: array
+                  providerList:
+                    allOf:
+                      - items:
+                          type: object
+                          properties:
+                            ProviderCode:
+                              type: string
+                              description: Code of the provider
+                            ServiceCode:
+                              type: string
+                              description: Code of the service
+                            ProviderName:
+                              type: string
+                              description: Name of the provider
+                    description: Contains list of Provider
+                    type: array
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+      operationId: get-ZendPartnerapidev-api
+      description: 'To get service list provided by ZENDMONEY, TransDetailCode will be use to define transaction type when using ZmartTransaction endpoint.'
+      parameters:
+        - schema:
+            type: string
+            example: '000005'
+          in: header
+          name: PartnerID
+          required: true
+          description: PartnerID given by ZENDMONEY
+        - schema:
+            type: string
+            example: OtwHTHOIlQdL9WCZypDSYyzgA0UWXWqFDXbOoyubIEM=
+          in: header
+          name: PartnerKey
+          required: true
+          description: Password that create from HMAC256(PartnerID + Secret Word + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+        - schema:
+            type: string
+            example: '2020-01-16T16:27:00Z'
+          in: header
+          name: TimeStamp
+          required: true
+          description: Time of request with format iso-8601.
+        - schema:
+            type: string
+            example: '000013'
+          in: header
+          name: SequenceNumber
+          required: true
+          description: 'A unique 6 length number for each request. '
+        - schema:
+            type: string
+            example: 'Bearer [token]'
+          in: header
+          name: Authorization
+          required: true
+          description: 'A unique 6 length number for each request. '
+    parameters: []
+  /ZendPartnerAPIDev/api/ZmartInquiry:
+    parameters: []
+    post:
+      summary: Zmart Inquiry
+      operationId: post-ZendPartnerAPIDev-api-ZmartInquiry
+      responses:
+        '200':
+          description: "      \n    {\n      \"code\":\"200\",\n      \"message\":\"Success\",\n      \"BankCode\":\"014\",\n      \"BankName\":\"BCA\",\n      \"AccountNumber\":\"123145123123\",\n      \"AccountName\":\"Pemilik Rekening\"\n    }\n  "
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+                  BankCode:
+                    type: string
+                    description: Return value for the code of the bank
+                  BankName:
+                    type: string
+                    description: 'Name of the bank '
+                  AccountNumber:
+                    type: string
+                    description: 'Account number '
+                  AccountName:
+                    type: string
+                    description: 'Name of the account holder '
+      description: Check Bank Account number
+      parameters:
+        - schema:
+            type: string
+            example: '001'
+          in: header
+          name: PartnerID
+          required: true
+          description: PartnerID given by ZENDMONEY.
+        - schema:
+            type: string
+            example: A+TSZe4OE6VAFz0V53IjXzPD5kz/Evv2NcJu+Gd/XcU=
+          in: header
+          name: PartnerKey
+          required: true
+          description: Password that create from HMAC256(PartnerID + Secret Word + BankCode + AccountNumber + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding
+        - schema:
+            type: string
+            example: '2019-03-11T05:50:00Z'
+          in: header
+          name: TimeStamp
+          required: true
+          description: Time of request with format iso-8601.
+        - schema:
+            type: string
+            example: '000020'
+          in: header
+          name: SequenceNumber
+          required: true
+          description: 'A unique 6 length number for each request. '
+        - schema:
+            type: string
+            example: Bearer Zdlasidh38fnoIp
+          in: header
+          name: Authorization
+          required: true
+          description: ‘Bearer’ + token from ZmartToken Return
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                BankCode:
+                  type: string
+                  description: Code of the bank used for checking
+                  example: '014'
+                AccountNumber:
+                  type: string
+                  description: Account number used for checking
+                  example: '123145123123'
+  /ZendPartnerAPIDev/api/ZmartBillerInquiry:
+    get:
+      summary: Zmart Biller Inquiry
+      tags: []
+      responses:
+        '200':
+          description: "  \n    {\n      \"code\":\"200\",\n      \"message\":\"Success\",\n      \"ServiceCode\":\"5\",\n      \"AccountNumber\":\"123145123123\",\n      \"OperatorCode\":\"\",\n      \"AccountName\":\"PLNUser\",\n      \"BillSummary\":\"DES09, JAN10, FEB10\",\n      \"Amount\":\"286705\"\n    }\n"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+                  ServiceCode:
+                    type: string
+                    description: Code of biller service being used
+                  AccountNumber:
+                    type: string
+                    description: Account number used for checking
+                  OperatorCode:
+                    type: string
+                    description: 'Code for certain biller like PDAM '
+                  AccountName:
+                    type: string
+                    description: 'Name of the account holder '
+                  BillSummary:
+                    type: string
+                    description: Information of the bill
+                  Amount:
+                    type: string
+                    description: Bill amount
+      operationId: get-ZendPartnerAPIDev-b
+      description: Check Biller Account number
+      parameters:
+        - schema:
+            type: string
+            example: '001'
+          in: header
+          name: PartnerID
+          required: true
+          description: PartnerID given by ZENDMONEY.
+        - schema:
+            type: string
+            example: A+TSZe4OE6VAFz0V53IjXzPD5kz/Evv2NcJu+Gd/XcU=
+          in: header
+          name: PartnerKey
+          required: true
+          description: Password that create from HMAC256(PartnerID + Secret Word + ServiceCode + AccountNumber + OperatorCode + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+        - schema:
+            type: string
+            example: '2019-03-11T05:50:00Z'
+          in: header
+          name: TimeStamp
+          required: true
+          description: Time of request with format iso-8601.
+        - schema:
+            type: string
+            example: '000020'
+          in: header
+          name: SequenceNumber
+          required: true
+          description: 'A unique 6 length number for each request. '
+        - schema:
+            type: string
+            example: Bearer Zdlasidh38fnoIp
+          in: header
+          name: Authorization
+          required: true
+          description: ‘Bearer’ + token from ZmartToken Return
+    parameters: []
+  /ZendPartnerAPIDev/api/ZmartTransaction:
+    parameters: []
+    post:
+      summary: Zmart Transaction
+      operationId: post-ZendPartnerAPIDev-api-ZmartTransaction
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+                  items:
+                    type: object
+                    description: Contains detail data
+                    properties:
+                      ZendFee:
+                        type: string
+                        description: Amount of money billed by ZENDMONEY as service fee
+                      AmountTotal:
+                        type: string
+                        description: 'Total amount of money paid by customer, including the fee'
+                      DepositAfter:
+                        type: string
+                        description: Amount of deposit money left after the transaction
+                      ReferenceNumber:
+                        type: string
+                        description: Unique code generated by ZENDMONEY as proof of transaction
+      parameters:
+        - schema:
+            type: string
+            example: '001'
+          in: header
+          name: PartnerID
+          description: PartnerID given by ZENDMONEY.
+          required: true
+        - schema:
+            type: string
+            example: A+TSZe4OE6VAFz0V53IjXzPD5kz/Evv2NcJu+Gd/XcU=
+          in: header
+          name: PartnerKey
+          description: Password that create from HMAC256(PartnerID + Secret Word + IdTypeTrans + Amount + Price + CustNumber + CustName + BankName + BankKode + TransUniqueNumber + UserId + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+          required: true
+        - schema:
+            type: string
+            example: '2019-03-11T05:50:00Z'
+          in: header
+          name: TimeStamp
+          description: Time of request with format iso-8601.
+          required: true
+        - schema:
+            type: string
+            example: '000020'
+          in: header
+          name: SequenceNumber
+          description: 'A unique 6 length number for each request. '
+          required: true
+        - schema:
+            type: string
+            example: Bearer Zdlasidh38fnoIp
+          in: header
+          name: Authorization
+          description: ‘Bearer’ + token from ZmartToken Return
+          required: true
+      description: Insert Transaction into ZENDMONEY Service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                TransDetailCode:
+                  type: string
+                  example: '000005'
+                  description: ID of the transaction Type (check ZmartService endpoint)
+                Amount:
+                  type: string
+                  example: '100000.00'
+                  description: Amount of the transaction
+                Price:
+                  type: string
+                  description: Price of the transaction
+                  example: '100000.00'
+                CustNumber:
+                  type: string
+                  description: "CustNumber\tCustomer code (ex: phone number for wallet transfer, or bank account number for bank transfer)"
+                  example: '081877786777'
+                CustName:
+                  type: string
+                  description: Name of the customer
+                  example: Anas Abdurrahman
+                BankName:
+                  type: string
+                  description: Name of the bank according to the BankCode (Mandatory for bank transfer service)
+                  example: Bank Central Asia
+                BankKode:
+                  type: string
+                  description: Code of the bank used for payment (Mandatory for bank transfer service)
+                  example: '014'
+                TransUniqueNumber:
+                  type: string
+                  description: 'Reference Number by Partner used to validate unique transaction. Reset Daily. (May Empty, if empty system will only validate transaction by SequenceNumber)'
+                UserId:
+                  type: string
+                  description: 'User Id of Partner (May Empty, if empty transaction will reduce the deposit of partner)'
+        description: ''
+  '/ZendPartnerAPIDev/api/ZmartTransHistory/{EndDate}/{StartDate}':
+    get:
+      summary: Zmart Trans History
+      tags: []
+      operationId: get-ZendPartnerAPIDev-api
+      description: Get Transaction History
+      parameters:
+        - schema:
+            type: string
+            example: '001'
+          in: header
+          name: PartnerID
+          required: true
+          description: PartnerID given by ZENDMONEY.
+        - schema:
+            type: string
+            example: A+TSZe4OE6VAFz0V53IjXzPD5kz/Evv2NcJu+Gd/XcU=
+          in: header
+          name: PartnerKey
+          required: true
+          description: Password that create from HMAC256(PartnerID + Secret Word + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+        - schema:
+            type: string
+            example: '2019-03-11T05:50:00Z'
+          in: header
+          name: TimeStamp
+          required: true
+          description: Time of request with format iso-8601.
+        - schema:
+            type: string
+            example: '000020'
+          in: header
+          name: SequenceNumber
+          required: true
+          description: 'A unique 6 length number for each request. '
+        - schema:
+            type: string
+            example: Bearer Zdlasidh38fnoIp
+          in: header
+          name: Authorization
+          required: true
+          description: ‘Bearer’ + token from ZmartToken Return
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+                  items:
+                    type: array
+                    description: Contains detail data
+                    items:
+                      type: object
+                      properties:
+                        TransName:
+                          type: string
+                          description: Name of transaction type according to TransDetailCode
+                        TransNumber:
+                          type: string
+                          description: Auto – generated transaction number
+                        TransDate:
+                          type: string
+                          description: Date of the transaction
+                        Amount:
+                          type: string
+                          description: Amount of the transaction
+                        Fee:
+                          type: string
+                          description: Fee billed by ZENDMONEY
+                        Total:
+                          type: string
+                          description: Price + fee combined
+                        BankName:
+                          type: string
+                          description: Name of the bank according to the BankCode
+                        CustNumber:
+                          type: string
+                          description: Customer code
+                        CustName:
+                          type: string
+                          description: Name of the customer
+                        Status:
+                          type: string
+                          description: Status of the transaction
+    parameters:
+      - schema:
+          type: string
+          example: /api/ZmartTransHistory?EndDate=2019-09-09
+          format: date
+        name: EndDate
+        in: path
+        description: End Date in yyyy-MM-dd format.
+      - schema:
+          type: string
+          format: date
+          example: /api/ZmartTransHistory?StartDate=2019-09-09
+        name: StartDate
+        in: path
+        description: Start Date in yyyy-MM-dd format
+  /ZendPartnerAPIDev/api/ZmartBalance:
+    get:
+      summary: Zmart Balance
+      tags: []
+      responses:
+        '200':
+          description: "    \n    {\"code\":\"200\",\n      \"message\":\"Success\",\n      \"items\":{\n              \"AccountId\":\"coba1\",\n              \"Currency\":\"IDR\",\n              \"Balance\":10000000.00}\n    }\n    "
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+                  items:
+                    type: object
+                    description: Contains detail data
+                    properties:
+                      AccountId:
+                        type: string
+                        description: Unique ID of the account generated by ZENDMONEY
+                      Currency:
+                        type: string
+                        description: Currency used by the customer
+                      Balance:
+                        type: string
+                        description: Current balance
+      operationId: get-ZendPartnerAPIDev-api-g
+      description: Get Deposit Balance
+      parameters:
+        - schema:
+            type: string
+            example: '001'
+          in: header
+          name: PartnerID
+          description: PartnerID given by ZENDMONEY.
+          required: true
+        - schema:
+            type: string
+            example: A+TSZe4OE6VAFz0V53IjXzPD5kz/Evv2NcJu+Gd/XcU=
+          in: header
+          name: PartnerKey
+          description: Password that create from HMAC256(PartnerID + Secret Word + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+          required: true
+        - schema:
+            type: string
+            example: '2019-03-11T05:50:00Z'
+          in: header
+          name: TimeStamp
+          description: Time of request with format iso-8601.
+          required: true
+        - schema:
+            type: string
+            example: '000020'
+          in: header
+          name: SequenceNumber
+          description: 'A unique 6 length number for each request. '
+          required: true
+        - schema:
+            type: string
+            example: Bearer Zdlasidh38fnoIp
+          in: header
+          name: Authorization
+          description: ‘Bearer’ + token from ZmartToken Return
+          required: true
+    parameters: []
+  '/ZendPartnerAPIDev/api/ZmartUserBalance/{UserId}':
+    get:
+      summary: Zmart User Balance
+      tags: []
+      responses:
+        '200':
+          description: "\n    {\n      \"code\":\"200\",\n      \"message\":\"Success\",\n      \"items\":{\n              \"AccountId\":\"coba1\",\n              \"Currency\":\"IDR\",\n              \"Balance\":10000000.00,\n              \"VANumber\":\"2763199926\",\n              \"VAName\":\"VA Pengguna\"}\n      }\n    "
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+                  items:
+                    type: object
+                    description: Contains detail data
+                    properties:
+                      AccountID:
+                        type: string
+                        description: Unique ID of the account generated by ZENDMONEY
+                      Currency:
+                        type: string
+                        description: Currency used by the customer
+                      Balance:
+                        type: string
+                        description: Current balance
+                      VANumber:
+                        type: string
+                        description: Virtual Account Number for Topup Balance
+                      VAName:
+                        type: string
+                        description: Virtual Account Number for Topup Balance
+      operationId: get-ZendPartnerAPIDev-api-ZmartUserBalance
+      description: Get User Deposit Balance
+      parameters:
+        - schema:
+            type: string
+            example: '001'
+          in: header
+          name: PartnerID
+          description: PartnerID given by ZENDMONEY.
+          required: true
+        - schema:
+            type: string
+            example: A+TSZe4OE6VAFz0V53IjXzPD5kz/Evv2NcJu+Gd/XcU=
+          in: header
+          name: 'PartnerKey    '
+          description: Password that create from HMAC256(PartnerID + Secret Word + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+          required: true
+        - schema:
+            type: string
+            example: '2019-03-11T05:50:00Z'
+          in: header
+          name: TimeStamp
+          description: Time of request with format iso-8601.
+          required: true
+        - schema:
+            type: string
+            example: '000020'
+          in: header
+          name: SequenceNumber
+          description: 'A unique 6 length number for each request. '
+          required: true
+        - schema:
+            type: string
+            example: Bearer Zdlasidh38fnoIp
+          in: header
+          name: Authorization
+          description: ‘Bearer’ + token from ZmartToken Return
+          required: true
+    parameters:
+      - schema:
+          type: string
+          example: /UserId=coba1
+        name: UserId
+        in: path
+        required: true
+        description: User Id Of Partner
+  /ZendPartnerAPIDev/api/Upload:
+    post:
+      summary: Uploaad KYC
+      operationId: post-ZendPartnerAPIDev-api-Upload
+      responses:
+        '200':
+          description: "\n    {\n      \"message\": \"success\",\n      \"code\" : \"200\"\n     } "
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+      parameters:
+        - schema:
+            type: string
+            example: '000005'
+          in: header
+          name: PartnerID
+          description: PartnerID given by zend.
+        - schema:
+            type: string
+            example: OtwHTHOIlQdL9WCZypDSYyzgA0UWXWqFDXbOoyubIEM=
+          in: header
+          name: PartnerKey
+          description: Password that create from HMAC256(PartnerID + Secret Word + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+        - schema:
+            type: string
+            example: '2020-01-16T16:27:00Z'
+          in: header
+          description: Time of request with format iso-8601.
+          name: TimeStamp
+        - schema:
+            type: string
+            example: '000013'
+          in: header
+          description: 'A unique 6 length number for each request. '
+          name: SequenceNumber
+        - schema:
+            type: string
+            example: Application/x-www-form-urlencoded
+          in: header
+          name: Content-Type
+          description: Optional media type of the associated representation. (for form data use application/x-www-form-urlencoded)
+        - schema:
+            type: string
+            example: 'Bearer [token]'
+          in: header
+          name: Authorization
+          description: 'Bearer (space) [token from GetToken]'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                Image:
+                  description: lla
+                IDNumber:
+                  type: string
+                  description: "idNumber from inserted KYC data before \n"
+                  example: '3173041234567890'
+                DocType:
+                  type: string
+                  description: |-
+                    “1” : KTP
+                    “2” : NPWP
+                    “3” : Passport
+                  example: '2'
+          application/json:
+            schema:
+              type: object
+              properties:
+                '':
+                  type: string
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          text/html:
+            schema:
+              type: object
+              properties:
+                Image:
+                  type: string
+                  description: Files in form-data
+                IDNumber:
+                  type: string
+                  description: 'idNumber from inserted KYC data before '
+                DocType:
+                  type: string
+                  description: |
+                    “1” : KTP
+                    “2” : NPWP
+                    “3” : Passport
+        description: ''
+      description: 'Response code from server, other than 200 means error'
+  '/ZendPartnerAPIDev/api/Zmartservice?/{ServiceCode}':
+    get:
+      summary: Zmart Service GET with parameter
+      tags: []
+      responses:
+        '200':
+          description: "\n    {\n      \"code\":\"200\",\n      \"message\":\"Success\",\n      \"transTypeDetail\":[\n                        {\"TransDetailCode\":6,\n                        \"ServiceCode\":2,\n                        \"ServiceName\":\"Topup Pulsa\",\n                        \"DetailName\":\"Pulsa 10.000\",\n                        \"Amount\":10000.00,\n                        \"Price\":12000.00,\n                        \"Fee\":500.00,\n                        \"ProviderCode\":1,\n                        \"ProviderName\":\"Telkomsel\"},\n                        \n                        {\"TransDetailCode\":7,\n                        \"ServiceCode\":2,\n                        \"ServiceName\":\"Topup Pulsa\",\n                        \"DetailName\":\"20.000\",\n                        \"Amount\":20000.00,\n                        \"Price\":22000.00,\n                        \"Fee\":500.00,\n                        \"ProviderCode\":1,\n                        \"ProviderName\":\"Telkomsel\"}\n                        ],\n    \"providerPrevix\":[\n                      {\"PrefixCode\":1,\n                      \"ProviderCode\":1,\n                      \"Previx\":\"0812\"},\n                      \n                      {\"PrefixCode\":2,\n                      \"ProviderCode\":1,\n                      \"Previx\":\"0813\"},\n                      \n                      {\"PrefixCode\":3,\n                      \"ProviderCode\":2,\n                      \"Previx\":\"0856\"},\n                      \n                      {\"PrefixCode\":4,\n                      \"ProviderCode\":2,\n                      \"Previx\":\"0857\"}\n                      ]\n      }\n"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: 'Response code from server, other than 200 means error'
+                  message:
+                    type: string
+                    description: Response message from server
+                  transTypeDetail:
+                    type: array
+                    description: Contains list of services detail item
+                    items:
+                      type: object
+                      properties:
+                        TransDetailCode:
+                          type: string
+                          description: 'Code of detail service, will be use in ZmartTransaction endpoint'
+                        ServiceCode:
+                          type: string
+                          description: Code of service
+                        ServiceName:
+                          type: string
+                          description: Name of the service
+                        Amount:
+                          type: string
+                          description: Amount of this service detail
+                        Price:
+                          type: string
+                          description: Price of this service detail from ZENDMONEY
+                        Fee:
+                          type: string
+                          description: Fee from ZENDMONEY
+                        ProviderCode:
+                          type: string
+                          description: Code of provider
+                        ProviderName:
+                          type: string
+                          description: Name of the provider
+                        DetailName:
+                          type: string
+                          description: Name of detail service
+                  ProviderPrevix:
+                    type: array
+                    description: Contains list of Provider’s prefix
+                    items:
+                      type: object
+                      properties:
+                        PrevixCode:
+                          type: string
+                          description: Code of prefix
+                        ProviderCode:
+                          type: string
+                          description: Code of provider
+                        Previx:
+                          type: string
+                          description: Previx number of the Provider
+      operationId: get-ZendPartnerAPIDev-api-Zmartservice?
+      description: To get  detail service provided by ZENDMONEY with parameter
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: PartnerID
+          description: PartnerID given by ZENDMONEY
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: PartnerKey
+          description: Password that create from HMAC256(PartnerID + Secret Word + TimeStamp + SequenceNumber) with hash password (ZendKey) and show the result as Base64 encoding.
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: TimeStamp
+          description: Time of request with format iso-8601.
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: SequenceNumber
+          description: 'A unique 6 length number for each request. '
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: ‘Bearer’ + token from ZmartToken Return
+          required: true
+    parameters:
+      - schema:
+          type: string
+          example: '2'
+        name: ServiceCode
+        in: path
+        description: Code of the service
+        required: true
+  '/<partner callback url>':
+    post:
+      summary: Partner Callback
+      operationId: post-partner-url-callback
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-type:
+              schema:
+                type: string
+                example: Application/json
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Status:
+                    type: string
+                    description: 'Only accept “1”, other will be consider failed and will be resend again.'
+                  Msg:
+                    type: string
+                    description: Message response from partner.
+      description: This feature is to notify partner when the transaction is successfully executed or failed.
+      parameters:
+        - schema:
+            type: string
+            example: Application/json
+          in: header
+          name: Content-Type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: object
+                  description: |
+                    “1” for KYC,
+                    “2” for Transaction
+                details:
+                  type: object
+                  description: 'Body model, different for each type'
+                  properties:
+                    KYC details:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          description: "“0” for “Rejected”, \n“1” for “Approved”\n"
+                        firstName:
+                          type: string
+                          description: First Name of registered value
+                        lastName:
+                          type: string
+                          description: Last Name of registered value
+                        idType:
+                          type: string
+                          description: Registered idType value
+                        idNumber:
+                          type: string
+                          description: Registered idNumber value
+                    Trans detail:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          description: "“0” for “Rejected”, \n“1” for “Approved”\n"
+                        TransactionCode:
+                          type: string
+                          description: Transaction registered code
+                        PartnerID:
+                          type: string
+                          description: Registered PartnerID value
+                        SequenceNumber:
+                          type: string
+                          description: Transaction Sequence Number
+                        TransactionTime:
+                          type: string
+                          description: 'Callback send time in format “yyyy-MM-ddThh:mm:ssZ”'
+                        Amount:
+                          type: string
+                          description: Registered Transaction Amount value
+    parameters: []
+components:
+  schemas: {}
+  securitySchemes:
+    API Key - 1:
+      type: oauth2
