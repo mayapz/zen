@@ -7,6 +7,10 @@ info:
     backgroundColor: '#FFFFFF'
     altText: Zendmoney logo
   description: ''
+  contact:
+    name: Zendmoney
+    url: zendmoney.com
+    email: apps@zendmoney.com
 servers:
   - url: 'http://zendmoney.com'
 paths:
@@ -16,7 +20,20 @@ paths:
       tags: []
       responses:
         '200':
-          description: "\n    {\n      \"code\":\"200\",\n      \"token\":\"nltdC9OLjiOsFHUqwkqgxKQLrH8zkyEnX_cIDT6nNZPmyow6co5HkFjSY0OnQrlCkK8QBYv9Sz8cJtFHx44KhtS47ReKT-      YgNg4qojQFnDxtrr0qHS3euasVLhhv-Wh6f8oKa99-yENN9ry-Bhpi-gJ46gBbDmSzfykW_2yPEzZCoWzQ_EtKYu4ImTv2prPbFHywnfmZCjC1aaa-nSBfqjnbBmNE35Vw8mT5cpHwgnDy0JIYIGCHupyiPvbhm4aHUBPVMohVYalfMUKy71JFFkXtSmURX19bGKFd14tb2lK4qVwPJY1ca42N8_oiLeDYR0KAlil2JAKXypAAydJaP-paivOd_OnUxM8BotqGqeeIhWnfu1Y4nCO2BKZrwhyXZD9ZLqygizgrRJHfXcugU7NwxtaiIlYFjXS6Kl9ggWzyfqyFDARTmp33tSl8EjY1\",\n      \n    \"refresh_token\": \"c62b20fe6d0d4f91beac2e2bcf4bf37d\",\n    \"message\":\"Token type : bearer\",\n    \"expired\":\"7199\"\n  }\n    "
+          description: |2-
+
+
+
+
+                {
+                  "code":"200",
+                  "token":"nltdC9OLjiOsFHUqwkqgxKQLrH8zkyEnX_cIDT6nNZPmyow6co5HkFjSY0OnQrlCkK8QBYv9Sz8cJtFHx44KhtS47ReKT-      YgNg4qojQFnDxtrr0qHS3euasVLhhv-Wh6f8oKa99-yENN9ry-Bhpi-gJ46gBbDmSzfykW_2yPEzZCoWzQ_EtKYu4ImTv2prPbFHywnfmZCjC1aaa-nSBfqjnbBmNE35Vw8mT5cpHwgnDy0JIYIGCHupyiPvbhm4aHUBPVMohVYalfMUKy71JFFkXtSmURX19bGKFd14tb2lK4qVwPJY1ca42N8_oiLeDYR0KAlil2JAKXypAAydJaP-paivOd_OnUxM8BotqGqeeIhWnfu1Y4nCO2BKZrwhyXZD9ZLqygizgrRJHfXcugU7NwxtaiIlYFjXS6Kl9ggWzyfqyFDARTmp33tSl8EjY1",
+                  
+                "refresh_token": "c62b20fe6d0d4f91beac2e2bcf4bf37d",
+                "message":"Token type : bearer",
+                "expired":"7199"
+              }
+                
           content:
             application/json:
               schema:
@@ -76,7 +93,15 @@ paths:
       operationId: post-ZendPartnerapidev-api-KYC
       responses:
         '200':
-          description: "    \n    {\n    \"message\": \"Berhasil menyimpan data\"\n    \"code\"  : \"200\"\n    }"
+          description: |2-
+
+
+
+                
+                {
+                "message": "Berhasil menyimpan data"
+                "code"  : "200"
+                }
           content:
             application/json:
               schema:
@@ -88,15 +113,12 @@ paths:
                   code:
                     type: string
                     description: 'Response code from server, other than 200 means error'
-      description: |+
+      description: |
         To insert detailed profile of user. There are two types of user:
         a. Regular User: User that has IDR 2 million balance limit.
         Mandatory field: firstName, lastName, email, and phoneNumber.
         b. Premium User: User that has IDR 10 million balance limit and premium service such as bank transfer.
         Mandatory field: as described below. Must be followed by Upload endpoint for verification purpose.
-
-
-
       parameters:
         - schema:
             type: string
@@ -251,7 +273,45 @@ paths:
       tags: []
       responses:
         '200':
-          description: "\n    {  \n    \"code\":\"200\",\n    \"message\":\"Success\",\n    \"serviceList\":[{\"ServiceCode\":3,\n                    \"ServiceName\":\"Paket Internet\"},\n                  \n                 {\"ServiceCode\":8,\n                  \"ServiceName\":\"Remittance\"},\n                  \n                  {\"ServiceCode\":5,\n                  \"ServiceName\":\"Tagihan Listrik\"},\n\n                  {\"ServiceCode\":4,\n                  \"ServiceName\":\"Token Listrik\"},\n                  \n                  {\"ServiceCode\":2,\n                  \"ServiceName\":\"Topup Pulsa\"}],\n                  \n    \"providerList\":[\n\n                  {\"ProviderCode\":2,\n                  \"ServiceCode\":2,\n                  \"ProviderName\":\"Indosat\"},\n\n                  \"ServiceCode\":2,\n                  \"ProviderName\":\"Telkomsel\"},\n\n                  {\"ProviderCode\":4,\n                  \"ServiceCode\":3,\n                  \"ProviderName\":\"Indosat\"},\n  \n                  {\"ProviderCode\":3,\n                \"ServiceCode\":3,\n                \"ProviderName\":\"Telkomsel\"}]}\n"
+          description: |2
+
+
+
+
+                {  
+                "code":"200",
+                "message":"Success",
+                "serviceList":[{"ServiceCode":3,
+                                "ServiceName":"Paket Internet"},
+                              
+                             {"ServiceCode":8,
+                              "ServiceName":"Remittance"},
+                              
+                              {"ServiceCode":5,
+                              "ServiceName":"Tagihan Listrik"},
+
+                              {"ServiceCode":4,
+                              "ServiceName":"Token Listrik"},
+                              
+                              {"ServiceCode":2,
+                              "ServiceName":"Topup Pulsa"}],
+                              
+                "providerList":[
+
+                              {"ProviderCode":2,
+                              "ServiceCode":2,
+                              "ProviderName":"Indosat"},
+
+                              "ServiceCode":2,
+                              "ProviderName":"Telkomsel"},
+
+                              {"ProviderCode":4,
+                              "ServiceCode":3,
+                              "ProviderName":"Indosat"},
+              
+                              {"ProviderCode":3,
+                            "ServiceCode":3,
+                            "ProviderName":"Telkomsel"}]}
           content:
             application/json:
               schema:
@@ -338,7 +398,20 @@ paths:
       operationId: post-ZendPartnerAPIDev-api-ZmartInquiry
       responses:
         '200':
-          description: "      \n    {\n      \"code\":\"200\",\n      \"message\":\"Success\",\n      \"BankCode\":\"014\",\n      \"BankName\":\"BCA\",\n      \"AccountNumber\":\"123145123123\",\n      \"AccountName\":\"Pemilik Rekening\"\n    }\n  "
+          description: |2-
+
+
+
+                  
+                {
+                  "code":"200",
+                  "message":"Success",
+                  "BankCode":"014",
+                  "BankName":"BCA",
+                  "AccountNumber":"123145123123",
+                  "AccountName":"Pemilik Rekening"
+                }
+              
           content:
             application/json:
               schema:
@@ -419,7 +492,21 @@ paths:
       tags: []
       responses:
         '200':
-          description: "  \n    {\n      \"code\":\"200\",\n      \"message\":\"Success\",\n      \"ServiceCode\":\"5\",\n      \"AccountNumber\":\"123145123123\",\n      \"OperatorCode\":\"\",\n      \"AccountName\":\"PLNUser\",\n      \"BillSummary\":\"DES09, JAN10, FEB10\",\n      \"Amount\":\"286705\"\n    }\n"
+          description: |2
+
+
+
+              
+                {
+                  "code":"200",
+                  "message":"Success",
+                  "ServiceCode":"5",
+                  "AccountNumber":"123145123123",
+                  "OperatorCode":"",
+                  "AccountName":"PLNUser",
+                  "BillSummary":"DES09, JAN10, FEB10",
+                  "Amount":"286705"
+                }
           content:
             application/json:
               schema:
@@ -714,7 +801,19 @@ paths:
       tags: []
       responses:
         '200':
-          description: "    \n    {\"code\":\"200\",\n      \"message\":\"Success\",\n      \"items\":{\n              \"AccountId\":\"coba1\",\n              \"Currency\":\"IDR\",\n              \"Balance\":10000000.00}\n    }\n    "
+          description: |2-
+
+
+
+                
+                {"code":"200",
+                  "message":"Success",
+                  "items":{
+                          "AccountId":"coba1",
+                          "Currency":"IDR",
+                          "Balance":10000000.00}
+                }
+                
           content:
             application/json:
               schema:
@@ -784,7 +883,22 @@ paths:
       tags: []
       responses:
         '200':
-          description: "\n    {\n      \"code\":\"200\",\n      \"message\":\"Success\",\n      \"items\":{\n              \"AccountId\":\"coba1\",\n              \"Currency\":\"IDR\",\n              \"Balance\":10000000.00,\n              \"VANumber\":\"2763199926\",\n              \"VAName\":\"VA Pengguna\"}\n      }\n    "
+          description: |2-
+
+
+
+
+                {
+                  "code":"200",
+                  "message":"Success",
+                  "items":{
+                          "AccountId":"coba1",
+                          "Currency":"IDR",
+                          "Balance":10000000.00,
+                          "VANumber":"2763199926",
+                          "VAName":"VA Pengguna"}
+                  }
+                
           content:
             application/json:
               schema:
@@ -867,7 +981,15 @@ paths:
       operationId: post-ZendPartnerAPIDev-api-Upload
       responses:
         '200':
-          description: "\n    {\n      \"message\": \"success\",\n      \"code\" : \"200\"\n     } "
+          description: |2-
+
+
+
+
+                {
+                  "message": "success",
+                  "code" : "200"
+                 } 
           content:
             application/json:
               schema:
@@ -926,7 +1048,8 @@ paths:
                   description: lla
                 IDNumber:
                   type: string
-                  description: "idNumber from inserted KYC data before \n"
+                  description: |
+                    idNumber from inserted KYC data before 
                   example: '3173041234567890'
                 DocType:
                   type: string
@@ -969,7 +1092,53 @@ paths:
       tags: []
       responses:
         '200':
-          description: "\n    {\n      \"code\":\"200\",\n      \"message\":\"Success\",\n      \"transTypeDetail\":[\n                        {\"TransDetailCode\":6,\n                        \"ServiceCode\":2,\n                        \"ServiceName\":\"Topup Pulsa\",\n                        \"DetailName\":\"Pulsa 10.000\",\n                        \"Amount\":10000.00,\n                        \"Price\":12000.00,\n                        \"Fee\":500.00,\n                        \"ProviderCode\":1,\n                        \"ProviderName\":\"Telkomsel\"},\n                        \n                        {\"TransDetailCode\":7,\n                        \"ServiceCode\":2,\n                        \"ServiceName\":\"Topup Pulsa\",\n                        \"DetailName\":\"20.000\",\n                        \"Amount\":20000.00,\n                        \"Price\":22000.00,\n                        \"Fee\":500.00,\n                        \"ProviderCode\":1,\n                        \"ProviderName\":\"Telkomsel\"}\n                        ],\n    \"providerPrevix\":[\n                      {\"PrefixCode\":1,\n                      \"ProviderCode\":1,\n                      \"Previx\":\"0812\"},\n                      \n                      {\"PrefixCode\":2,\n                      \"ProviderCode\":1,\n                      \"Previx\":\"0813\"},\n                      \n                      {\"PrefixCode\":3,\n                      \"ProviderCode\":2,\n                      \"Previx\":\"0856\"},\n                      \n                      {\"PrefixCode\":4,\n                      \"ProviderCode\":2,\n                      \"Previx\":\"0857\"}\n                      ]\n      }\n"
+          description: |2
+
+
+
+
+                {
+                  "code":"200",
+                  "message":"Success",
+                  "transTypeDetail":[
+                                    {"TransDetailCode":6,
+                                    "ServiceCode":2,
+                                    "ServiceName":"Topup Pulsa",
+                                    "DetailName":"Pulsa 10.000",
+                                    "Amount":10000.00,
+                                    "Price":12000.00,
+                                    "Fee":500.00,
+                                    "ProviderCode":1,
+                                    "ProviderName":"Telkomsel"},
+                                    
+                                    {"TransDetailCode":7,
+                                    "ServiceCode":2,
+                                    "ServiceName":"Topup Pulsa",
+                                    "DetailName":"20.000",
+                                    "Amount":20000.00,
+                                    "Price":22000.00,
+                                    "Fee":500.00,
+                                    "ProviderCode":1,
+                                    "ProviderName":"Telkomsel"}
+                                    ],
+                "providerPrevix":[
+                                  {"PrefixCode":1,
+                                  "ProviderCode":1,
+                                  "Previx":"0812"},
+                                  
+                                  {"PrefixCode":2,
+                                  "ProviderCode":1,
+                                  "Previx":"0813"},
+                                  
+                                  {"PrefixCode":3,
+                                  "ProviderCode":2,
+                                  "Previx":"0856"},
+                                  
+                                  {"PrefixCode":4,
+                                  "ProviderCode":2,
+                                  "Previx":"0857"}
+                                  ]
+                  }
           content:
             application/json:
               schema:
@@ -1070,7 +1239,7 @@ paths:
         in: path
         description: Code of the service
         required: true
-  '/<partner callback url>':
+  /<partner callback url>:
     post:
       summary: Partner Callback
       operationId: post-partner-url-callback
@@ -1120,7 +1289,9 @@ paths:
                       properties:
                         status:
                           type: string
-                          description: "“0” for “Rejected”, \n“1” for “Approved”\n"
+                          description: |
+                            “0” for “Rejected”, 
+                            “1” for “Approved”
                         firstName:
                           type: string
                           description: First Name of registered value
@@ -1138,7 +1309,9 @@ paths:
                       properties:
                         status:
                           type: string
-                          description: "“0” for “Rejected”, \n“1” for “Approved”\n"
+                          description: |
+                            “0” for “Rejected”, 
+                            “1” for “Approved”
                         TransactionCode:
                           type: string
                           description: Transaction registered code
