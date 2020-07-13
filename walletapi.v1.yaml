@@ -26,6 +26,7 @@ paths:
 
 
 
+
                 {
                   "code":"200",
                   "token":"nltdC9OLjiOsFHUqwkqgxKQLrH8zkyEnX_cIDT6nNZPmyow6co5HkFjSY0OnQrlCkK8QBYv9Sz8cJtFHx44KhtS47ReKT-      YgNg4qojQFnDxtrr0qHS3euasVLhhv-Wh6f8oKa99-yENN9ry-Bhpi-gJ46gBbDmSzfykW_2yPEzZCoWzQ_EtKYu4ImTv2prPbFHywnfmZCjC1aaa-nSBfqjnbBmNE35Vw8mT5cpHwgnDy0JIYIGCHupyiPvbhm4aHUBPVMohVYalfMUKy71JFFkXtSmURX19bGKFd14tb2lK4qVwPJY1ca42N8_oiLeDYR0KAlil2JAKXypAAydJaP-paivOd_OnUxM8BotqGqeeIhWnfu1Y4nCO2BKZrwhyXZD9ZLqygizgrRJHfXcugU7NwxtaiIlYFjXS6Kl9ggWzyfqyFDARTmp33tSl8EjY1",
@@ -95,6 +96,7 @@ paths:
       responses:
         '200':
           description: |2-
+
 
 
 
@@ -281,6 +283,7 @@ paths:
 
 
 
+
                 {  
                 "code":"200",
                 "message":"Success",
@@ -406,6 +409,7 @@ paths:
 
 
 
+
                   
                 {
                   "code":"200",
@@ -497,6 +501,7 @@ paths:
       responses:
         '200':
           description: |2
+
 
 
 
@@ -813,6 +818,7 @@ paths:
 
 
 
+
                 
                 {"code":"200",
                   "message":"Success",
@@ -892,6 +898,7 @@ paths:
       responses:
         '200':
           description: |2-
+
 
 
 
@@ -991,6 +998,7 @@ paths:
       responses:
         '200':
           description: |2-
+
 
 
 
@@ -1103,6 +1111,7 @@ paths:
       responses:
         '200':
           description: |2
+
 
 
 
@@ -1344,3 +1353,9 @@ components:
   securitySchemes:
     API Key - 1:
       type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: ''
+          tokenUrl: ''
+          refreshUrl: ''
+          scopes: {}
